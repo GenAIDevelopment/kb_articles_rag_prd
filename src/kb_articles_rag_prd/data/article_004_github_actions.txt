@@ -7,3 +7,4 @@ Key Concepts:
 1. Workflows – Defined in YAML files.
 2. Jobs – Units of work executed in workflows.
 3. Runners – Machines that execute jobs.
+4. Testing

@@ -1,6 +1,5 @@
 from langchain.indexes import index, IndexingResult
 from kb_articles_rag_prd.core.indexer import BaseIndexer
-from kb_articles_rag_prd.common.config import KnowledgeBaseIndexerConfig
 
 class KBArticleTextIndexer(BaseIndexer):
     """This indexer expects the docs to be in text format

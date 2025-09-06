@@ -36,3 +36,26 @@ class KnowledgeBaseIndexerConfig:
     chunk_overlap: int = field(default=100)
 
     seperators: Tuple[str, ...] = field(default=("\n\n", "\n", " ", ""))
+
+
+@dataclass
+class KnowledgeBaseGenConfig:
+    vector_store_engine: Literal["chroma", "faiss"] = field(default="chroma")
+
+    vector_store_persist_path: str = field(default="vectordb/")
+
+    vector_store_collection_name: Optional[str] = field(default="kbarticles")
+
+    embedding_engine: Literal["openai", "huggingface", "vertex"] = field(default="vertex")
+
+    embedding_engine_model: str = field(default="text-embedding-005")
+
+    retriever_search_type: Literal["similarity", "mmr"] = field(default="similarity")
+
+    retriever_search_kwargs: dict = field(default_factory=dict)
+
+    retriever_k: int = field(default=3)
+
+    model_provier: str = field(default="google_vertexai")
+
+    model: str = field(default="gemini-2.5-flash-lite")

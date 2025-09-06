@@ -77,3 +77,6 @@ dmypy.json
 .uv-lock.json
 .uv-cache/
 .uv-env/
+
+*record_manager.db
+vectordb/*

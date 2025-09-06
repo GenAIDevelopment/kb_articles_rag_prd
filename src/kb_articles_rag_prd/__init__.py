@@ -1,20 +1,36 @@
-
-from langchain_core.documents import Document
-from kb_articles_rag_prd.core.readers import DirectoryReader
-from kb_articles_rag_prd.core.test_recordmanager import test_indexing
-def read_docs():
-    directory_reader = DirectoryReader()
-    docs = directory_reader.read(
-        path=r"C:\khajaclassroom\GenerativeAI\agenticai\aug25\kb_articles_rag_prd\src\kb_articles_rag_prd\data",
-        glob="*.txt")
-    for doc in docs:
-        print(doc.metadata)
+from kb_articles_rag_prd.common.config import KnowledgeBaseIndexerConfig
+from kb_articles_rag_prd.provider.indexer import KBArticleTextIndexer
 
 
-def main() -> None:
-    result = test_indexing()
-    print(result)
-    
+def create_indexer_config() -> KnowledgeBaseIndexerConfig:
+    """This returns sample indexer config
+
+    Returns:
+        KnowledgeBaseIndexerConfig: config
+    """
+    config = KnowledgeBaseIndexerConfig(
+        source="data/",
+        source_type="local",
+        glob="**/*.txt",
+        vector_store_engine="chroma",
+        vector_store_persist_path="vectordb"
+    )
+    return config
+
+def indexing_test():
+    """Test for indexing implementation
+    """
+    indexer = KBArticleTextIndexer(
+        config=create_indexer_config()
+    )
+    result = indexer.index()
+    print(f"indexing is completed. stats are {result}")
+
+def main():
+    """entrypoint
+    """
+    indexing_test()
+
 
 if __name__ == "__main__":
     main()
